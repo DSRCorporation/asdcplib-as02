@@ -75,6 +75,10 @@ ASDCP::TimedText::LocalFilenameResolver::ResolveRID(const byte_t* uuid, TimedTex
   // TODO, fix this for win32 (needs regex)
   FindInPath(PathMatchRegex(RID.EncodeHex(buf, 64)), m_Dirname, found_list);
 #endif
+#ifdef KM_WIN32
+  // FIXME: Hard fix from AL to have simple direct logic to get a file.
+  found_list.push_back(m_Dirname + "/" + RID.EncodeHex(buf, 64));
+#endif
 
   if ( found_list.size() == 1 )
     {

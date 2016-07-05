@@ -369,6 +369,17 @@ AS_02::MXF::AS02IndexReader::Lookup(ui32_t frame_num, ASDCP::MXF::IndexTableSegm
 	    {
 	      ui64_t tmp = frame_num - start_pos;
 	      assert(tmp <= 0xFFFFFFFFL);
+		  // FIXME: AL fix to unpack as-02 timed text.
+		  if (segment->IndexEntryArray.size())
+		  {
+			Entry = segment->IndexEntryArray[(ui32_t) tmp];
+		  }
+		  else 
+		  {
+			  Entry.Flags = 0;
+			  Entry.KeyFrameOffset = 0;
+			  Entry.TemporalOffset = 0;
+		  }
 	      Entry = segment->IndexEntryArray[(ui32_t) tmp];
 	      Entry.StreamOffset = Entry.StreamOffset - segment->RtEntryOffset + segment->RtFileOffset;
 	      return RESULT_OK;

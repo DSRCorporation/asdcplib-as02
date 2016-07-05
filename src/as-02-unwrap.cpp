@@ -578,6 +578,94 @@ read_PCM_file(CommandOptions& Options)
   return result;
 }
 
+//------------------------------------------------------------------------------------------
+// TimedText essence
+
+// Read one or more timed text streams from a plaintext ASDCP file
+// Read one or more timed text streams from a ciphertext ASDCP file
+// Read one or more timed text streams from a ciphertext ASDCP file
+//
+Result_t
+read_timed_text_file(CommandOptions& Options)
+{
+  AESDecContext*     Context = 0;
+  HMACContext*       HMAC = 0;
+  AS02::TimedText::MXFReader     Reader;
+  TimedText::FrameBuffer   FrameBuffer;
+  TimedText::TimedTextDescriptor TDesc;
+
+  Result_t result = Reader.OpenRead(Options.input_filename);
+
+  if ( ASDCP_SUCCESS(result) )
+    {
+      Reader.FillTimedTextDescriptor(TDesc);
+      FrameBuffer.Capacity(Options.fb_size);
+
+      if ( Options.verbose_flag )
+	TimedText::DescriptorDump(TDesc);
+    }
+
+  if ( ASDCP_SUCCESS(result) && Options.key_flag )
+    {
+      Context = new AESDecContext;
+      result = Context->InitKey(Options.key_value);
+
+      if ( ASDCP_SUCCESS(result) && Options.read_hmac )
+	{
+	  WriterInfo Info;
+	  Reader.FillWriterInfo(Info);
+
+	  if ( Info.UsesHMAC )
+	    {
+	      HMAC = new HMACContext;
+	      result = HMAC->InitKey(Options.key_value, Info.LabelSetType);
+	    }
+	  else
+	    {
+	      fputs("File does not contain HMAC values, ignoring -m option.\n", stderr);
+	    }
+	}
+    }
+
+  if ( ASDCP_FAILURE(result) )
+    return result;
+
+  std::string XMLDoc;
+  std::string out_path = Kumu::PathDirname(Options.file_prefix);
+  ui32_t write_count;
+  char buf[64];
+  AS02::TimedText::ResourceList_t::const_iterator ri;
+
+  result = Reader.ReadTimedTextResource(XMLDoc, Context, HMAC);
+
+  if ( ASDCP_SUCCESS(result) && ( ! Options.no_write_flag ) )
+    {
+      Kumu::FileWriter Writer;
+      result = Writer.OpenWrite(Options.file_prefix);
+
+      if ( ASDCP_SUCCESS(result) )
+	result = Writer.Write(reinterpret_cast<const byte_t*>(XMLDoc.c_str()), XMLDoc.size(), &write_count);
+    }
+
+  for ( ri = TDesc.ResourceList.begin() ; ri != TDesc.ResourceList.end() && ASDCP_SUCCESS(result); ri++ )
+    {
+      result = Reader.ReadAncillaryResource(ri->ResourceID, FrameBuffer, Context, HMAC);
+
+      if ( ASDCP_SUCCESS(result) && ( ! Options.no_write_flag ) )
+	{
+	  Kumu::FileWriter Writer;
+	  result = Writer.OpenWrite(Kumu::PathJoin(out_path, Kumu::UUID(ri->ResourceID).EncodeHex(buf, 64)).c_str());
+
+	  if ( ASDCP_SUCCESS(result) )
+	    result = Writer.Write(FrameBuffer.RoData(), FrameBuffer.Size(), &write_count);
+
+	      if ( Options.verbose_flag )
+		FrameBuffer.Dump(stderr, Options.fb_dump_size);
+	}
+    }
+
+  return result;
+}
 
 //
 int
