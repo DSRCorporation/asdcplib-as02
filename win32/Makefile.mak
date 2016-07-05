@@ -49,10 +49,18 @@ LINKFLAGS1 = /NOLOGO /SUBSYSTEM:console /MACHINE:I386 /LIBPATH:. /DEBUG
 
 !ifdef DEBUG
 CXXFLAGS2 = $(CXXFLAGS1) /MTd /DDEBUG /D_DEBUG /Od /RTC1 /ZI
+!IFDEF WITH_XERCES
+LINKFLAGS = $(LINKFLAGS1) /DEBUG /LIBPATH:"$(WITH_XERCES)"\lib
+!ELSE
 LINKFLAGS = $(LINKFLAGS1) /DEBUG
+!ENDIF
 !else
 CXXFLAGS2 = $(CXXFLAGS1) /MT /DNDEBUG /D_NDEBUG /O2
+!IFDEF WITH_XERCES
+LINKFLAGS = $(LINKFLAGS1) /LIBPATH:"$(WITH_XERCES)"\lib
+!ELSE
 LINKFLAGS = $(LINKFLAGS1)
+!ENDIF
 !endif
 
 !IFDEF WITH_XERCES
@@ -89,7 +97,7 @@ ASDCP_OBJS = MPEG2_Parser.obj MPEG.obj JP2K_Codestream_Parser.obj \
 	PCMDataProviders.obj SyncEncoder.obj CRC16.obj \
 	UUIDInformation.obj
 AS02_OBJS = h__02_Reader.obj h__02_Writer.obj AS_02_JP2K.obj \
-	AS_02_PCM.obj
+	AS_02_PCM.obj ST2052_TextParser.obj AS_02_TimedText.obj
 
 {$(SRCDIR)\}.cpp{}.obj:
 	$(CXX) $(CXXFLAGS) -Fd$(OBJDIR)\ /c $<
@@ -99,7 +107,7 @@ AS02_OBJS = h__02_Reader.obj h__02_Writer.obj AS_02_JP2K.obj \
 
 all: kmfilegen.exe kmrandgen.exe kmuuidgen.exe asdcp-test.exe \
      asdcp-wrap.exe asdcp-unwrap.exe asdcp-info.exe \
-     blackwave.exe klvwalk.exe j2c-test.exe wavesplit.exe 
+     blackwave.exe klvwalk.exe j2c-test.exe wavesplit.exe \
 !IFDEF USE_AS_02
        as-02-wrap.exe as-02-unwrap.exe \
 !ENDIF
@@ -147,7 +155,18 @@ klvwalk.exe: libasdcp.lib klvwalk.obj
 	$(LINK) $(LINKFLAGS) /OUT:klvwalk.exe $** Advapi32.lib
 
 asdcp-test.exe: libasdcp.lib asdcp-test.obj
-	$(LINK) $(LINKFLAGS) /OUT:asdcp-test.exe $** Advapi32.lib
+!IFDEF WITH_XERCES
+!IFDEF DEBUG
+	$(LINK) $(LINKFLAGS) /OUT:asdcp-test.exe $** Advapi32.lib xerces-c_2D.lib
+!ELSE
+	$(LINK) $(LINKFLAGS) /OUT:asdcp-test.exe $** Advapi32.lib xerces-c_2.lib
+!ENDIF
+!ELSEIFDEF WITH_XML_PARSER
+	$(LINK) $(LINKFLAGS) /OUT:asdcp-test.exe $** Advapi32.lib libexpatMT.lib
+!ELSE
+	$(LINK) $(LINKFLAGS) /OUT:asdcp-test.exe $** Advapi32.lib 
+!ENDIF 
+
 
 asdcp-wrap.exe: libasdcp.lib asdcp-wrap.obj
 	$(LINK) $(LINKFLAGS) /OUT:asdcp-wrap.exe $** Advapi32.lib
