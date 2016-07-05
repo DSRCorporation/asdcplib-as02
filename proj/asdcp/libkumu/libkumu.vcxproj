@@ -50,7 +50,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\openssl\inc32\;C:\Users\Alexandr\Downloads\xerces-c-src_2_8_0\src\;../../../src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\vendors\openssl\inc32\;..\..\vendors\xerces\include\;..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/DWIN32  /DKM_WIN32 /D_CONSOLE /DASDCP_PLATFORM=\"win32'\" /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_WARNINGS /DPACKAGE_VERSION=\"2.5.14\" /DCONFIG_RANDOM_UUID=1  /DVERSION=\"2.5.14\" /D_USE_MATH_DEFINES  /Dstrtoll=_strtoi64 /DHAVE_XERCES_C=1</AdditionalOptions>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
@@ -75,7 +75,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\openssl\inc32\;C:\Users\Alexandr\Downloads\xerces-c-src_2_8_0\src\;../../../src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\vendors\openssl\inc32\;..\..\vendors\xerces\include\;..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/DWIN32  /DKM_WIN32 /D_CONSOLE /DASDCP_PLATFORM=\"win32'\" /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_WARNINGS /DPACKAGE_VERSION=\"2.5.14\" /DCONFIG_RANDOM_UUID=1  /DVERSION=\"2.5.14\" /D_USE_MATH_DEFINES  /Dstrtoll=_strtoi64 /DHAVE_XERCES_C=1</AdditionalOptions>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
