@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\AS_DCP.cpp" />
+    <ClCompile Include="..\..\..\src\AS_DCP_AES.cpp" />
+    <ClCompile Include="..\..\..\src\AS_DCP_ATMOS.cpp" />
+    <ClCompile Include="..\..\..\src\AS_DCP_DCData.cpp" />
+    <ClCompile Include="..\..\..\src\AS_DCP_JP2K.cpp" />
+    <ClCompile Include="..\..\..\src\AS_DCP_MPEG2.cpp" />
+    <ClCompile Include="..\..\..\src\AS_DCP_MXF.cpp" />
+    <ClCompile Include="..\..\..\src\AS_DCP_PCM.cpp" />
+    <ClCompile Include="..\..\..\src\AS_DCP_TimedText.cpp" />
+    <ClCompile Include="..\..\..\src\AtmosSyncChannel_Generator.cpp" />
+    <ClCompile Include="..\..\..\src\AtmosSyncChannel_Mixer.cpp" />
+    <ClCompile Include="..\..\..\src\CRC16.c" />
+    <ClCompile Include="..\..\..\src\DCData_ByteStream_Parser.cpp" />
+    <ClCompile Include="..\..\..\src\DCData_Sequence_Parser.cpp" />
+    <ClCompile Include="..\..\..\src\Dict.cpp" />
+    <ClCompile Include="..\..\..\src\h__Reader.cpp" />
+    <ClCompile Include="..\..\..\src\h__Writer.cpp" />
+    <ClCompile Include="..\..\..\src\Index.cpp" />
+    <ClCompile Include="..\..\..\src\JP2K.cpp" />
+    <ClCompile Include="..\..\..\src\JP2K_Codestream_Parser.cpp" />
+    <ClCompile Include="..\..\..\src\JP2K_Sequence_Parser.cpp" />
+    <ClCompile Include="..\..\..\src\KLV.cpp" />
+    <ClCompile Include="..\..\..\src\MDD.cpp" />
+    <ClCompile Include="..\..\..\src\Metadata.cpp" />
+    <ClCompile Include="..\..\..\src\MPEG.cpp" />
+    <ClCompile Include="..\..\..\src\MPEG2_Parser.cpp" />
+    <ClCompile Include="..\..\..\src\MXF.cpp" />
+    <ClCompile Include="..\..\..\src\MXFTypes.cpp" />
+    <ClCompile Include="..\..\..\src\PCMDataProviders.cpp" />
+    <ClCompile Include="..\..\..\src\PCMParserList.cpp" />
+    <ClCompile Include="..\..\..\src\PCM_Parser.cpp" />
+    <ClCompile Include="..\..\..\src\SyncEncoder.c" />
+    <ClCompile Include="..\..\..\src\TimedText_Parser.cpp" />
+    <ClCompile Include="..\..\..\src\UUIDInformation.c" />
+    <ClCompile Include="..\..\..\src\Wav.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\AS_DCP.h" />
+    <ClInclude Include="..\..\..\src\AtmosSyncChannel_Generator.h" />
+    <ClInclude Include="..\..\..\src\AtmosSyncChannel_Mixer.h" />
+    <ClInclude Include="..\..\..\src\CRC16.h" />
+    <ClInclude Include="..\..\..\src\JP2K.h" />
+    <ClInclude Include="..\..\..\src\KLV.h" />
+    <ClInclude Include="..\..\..\src\MDD.h" />
+    <ClInclude Include="..\..\..\src\Metadata.h" />
+    <ClInclude Include="..\..\..\src\MPEG.h" />
+    <ClInclude Include="..\..\..\src\MXF.h" />
+    <ClInclude Include="..\..\..\src\MXFTypes.h" />
+    <ClInclude Include="..\..\..\src\PCMDataProviders.h" />
+    <ClInclude Include="..\..\..\src\PCMParserList.h" />
+    <ClInclude Include="..\..\..\src\SyncEncoder.h" />
+    <ClInclude Include="..\..\..\src\UUIDInformation.h" />
+    <ClInclude Include="..\..\..\src\Wav.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6826F940-3E64-4FCA-9844-1686C7824BE9}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>asdcp</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\openssl\inc32\;../../../src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/DWIN32  /DKM_WIN32 /D_CONSOLE /DASDCP_PLATFORM=\"win32'\" /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_WARNINGS /DPACKAGE_VERSION=\"2.5.14\" /DCONFIG_RANDOM_UUID=1  /DVERSION=\"2.5.14\" /D_USE_MATH_DEFINES  /Dstrtoll=_strtoi64 </AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\openssl\inc32\;../../../src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/DWIN32  /DKM_WIN32 /D_CONSOLE /DASDCP_PLATFORM=\"win32'\" /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_WARNINGS /DPACKAGE_VERSION=\"2.5.14\" /DCONFIG_RANDOM_UUID=1  /DVERSION=\"2.5.14\" /D_USE_MATH_DEFINES  /Dstrtoll=_strtoi64 </AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
