@@ -590,7 +590,7 @@ read_timed_text_file(CommandOptions& Options)
 {
   AESDecContext*     Context = 0;
   HMACContext*       HMAC = 0;
-  AS02::TimedText::MXFReader     Reader;
+  AS_02::TimedText::MXFReader     Reader;
   TimedText::FrameBuffer   FrameBuffer;
   TimedText::TimedTextDescriptor TDesc;
 
@@ -634,7 +634,7 @@ read_timed_text_file(CommandOptions& Options)
   std::string out_path = Kumu::PathDirname(Options.file_prefix);
   ui32_t write_count;
   char buf[64];
-  AS02::TimedText::ResourceList_t::const_iterator ri;
+  AS_02::TimedText::ResourceList_t::const_iterator ri;
 
   result = Reader.ReadTimedTextResource(XMLDoc, Context, HMAC);
 
