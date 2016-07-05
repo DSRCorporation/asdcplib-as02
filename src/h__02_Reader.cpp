@@ -380,7 +380,6 @@ AS_02::MXF::AS02IndexReader::Lookup(ui32_t frame_num, ASDCP::MXF::IndexTableSegm
 			  Entry.KeyFrameOffset = 0;
 			  Entry.TemporalOffset = 0;
 		  }
-	      Entry = segment->IndexEntryArray[(ui32_t) tmp];
 	      Entry.StreamOffset = Entry.StreamOffset - segment->RtEntryOffset + segment->RtFileOffset;
 	      return RESULT_OK;
 	    }

@@ -705,6 +705,10 @@ main(int argc, const char** argv)
 	  result = read_PCM_file(Options);
 	  break;
 
+    case ESS_AS02_TIMED_TEXT:
+	  result = read_timed_text_file(Options);
+	  break;
+
 	default:
 	  fprintf(stderr, "%s: Unknown file type, not AS-02 essence.\n", Options.input_filename);
 	  return 5;
