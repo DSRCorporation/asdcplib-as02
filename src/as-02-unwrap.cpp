@@ -647,6 +647,9 @@ read_timed_text_file(CommandOptions& Options)
 	result = Writer.Write(reinterpret_cast<const byte_t*>(XMLDoc.c_str()), XMLDoc.size(), &write_count);
     }
 
+#if 0
+// FIXME: we need ttml.xml data only. don't process the resources. It is not tested well yet.
+
   for ( ri = TDesc.ResourceList.begin() ; ri != TDesc.ResourceList.end() && ASDCP_SUCCESS(result); ri++ )
     {
       result = Reader.ReadAncillaryResource(ri->ResourceID, FrameBuffer, Context, HMAC);
@@ -663,6 +666,7 @@ read_timed_text_file(CommandOptions& Options)
 		FrameBuffer.Dump(stderr, Options.fb_dump_size);
 	}
     }
+#endif
 
   return result;
 }
